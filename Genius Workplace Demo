@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bella's Brick Oven Pizza | Genius Workplace Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --red: #c0392b;
+      --dark: #1b1b1b;
+      --light: #fdf3e7;
+      --accent: #f1c40f;
+      --text: #333;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: var(--light);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--dark);
+      color: #fff;
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    header .logo {
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 1rem;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .hero {
+      padding: 4rem 5%;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 2rem;
+      align-items: center;
+      background: linear-gradient(135deg, #fdf3e7, #ffe0c2);
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      color: var(--dark);
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      margin-bottom: 1.5rem;
+      max-width: 480px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .btn-primary {
+      background: var(--red);
+      color: #fff;
+    }
+
+    .btn-secondary {
+      background: #fff;
+      color: var(--red);
+      border: 2px solid var(--red);
+    }
+
+    .hero-image {
+      width: 100%;
+      height: 260px;
+      border-radius: 16px;
+      background: url("https://images.pexels.com/photos/4109084/pexels-photo-4109084.jpeg") center/cover no-repeat;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    section {
+      padding: 3rem 5%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1.8rem;
+      color: var(--dark);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .feature-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .feature-card h3 {
+      margin-bottom: 0.5rem;
+      color: var(--red);
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .menu-item {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.25rem;
+      border-left: 4px solid var(--red);
+    }
+
+    .menu-item h3 {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.5rem;
+    }
+
+    .menu-item span.price {
+      color: var(--dark);
+      font-weight: 600;
+    }
+
+    .menu-item p {
+      font-size: 0.95rem;
+    }
+
+    .highlight {
+      background: var(--dark);
+      color: #fff;
+      border-radius: 16px;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .highlight h2 {
+      margin-bottom: 0.75rem;
+    }
+
+    .highlight p {
+      margin-bottom: 1rem;
+    }
+
+    .highlight-box {
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      font-size: 0.95rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 2rem;
+    }
+
+    .contact-info p {
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-form {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .contact-form label {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 0.25rem;
+      margin-top: 0.75rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.6rem 0.75rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 0.95rem;
+    }
+
+    .contact-form textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    footer {
+      background: var(--dark);
+      color: #fff;
+      text-align: center;
+      padding: 1.5rem 5%;
+      font-size: 0.85rem;
+    }
+
+    footer span {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      .hero,
+      .highlight,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 3rem;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Bella's Brick Oven Pizza</div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#menu">Menu</a>
+      <a href="#instagram">Instagram</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1>Fresh, Hot, and Made With Love — Every Slice, Every Time.</h1>
+      <p>
+        Bella's Brick Oven Pizza brings authentic, handcrafted pies to your neighborhood.
+        Crispy crust, rich sauce, and premium toppings baked to perfection in our brick oven.
+      </p>
+      <div class="hero-buttons">
+        <a href="#menu" class="btn btn-primary">View Menu</a>
+        <a href="#contact" class="btn btn-secondary">Order or Book a Table</a>
+      </div>
+    </div>
+    <div class="hero-image"></div>
+  </section>
+
+  <section id="about">
+    <h2 class="section-title">Why Our Pizza Hits Different</h2>
+    <div class="features">
+      <div class="feature-card">
+        <h3>Brick‑Oven Flavor</h3>
+        <p>
+          Our pizzas are baked in a traditional brick oven, giving every slice a smoky,
+          crispy finish you can’t get anywhere else.
+        </p>
+      </div>
+      <div class="feature-card">
+        <h3>Fresh Ingredients</h3>
+        <p>
+          From locally sourced vegetables to imported cheeses, we choose ingredients that
+          make every bite unforgettable.
+        </p>
+      </div>
+      <div class="feature-card">
+        <h3>Family‑Owned</h3>
+        <p>
+          Bella’s is a family‑run pizzeria built on warmth, hospitality, and recipes passed
+          down through generations.
+        </p>
+      </div>
+      <div class="feature-card">
+        <h3>Takeout & Delivery</h3>
+        <p>
+          Order online or by phone and get your pizza fresh and hot—whether you’re at home,
+          at work, or on the go.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="menu">
+    <h2 class="section-title">Customer Favorites</h2>
+    <div class="menu-grid">
+      <div class="menu-item">
+        <h3>Margherita Classic <span class="price">$13</span></h3>
+        <p>Fresh mozzarella, basil, and our signature tomato sauce on a thin, crispy crust.</p>
+      </div>
+      <div class="menu-item">
+        <h3>Pepperoni Supreme <span class="price">$15</span></h3>
+        <p>Double pepperoni, melted mozzarella, and a perfect balance of spice and flavor.</p>
+      </div>
+      <div class="menu-item">
+        <h3>Veggie Garden <span class="price">$14</span></h3>
+        <p>Bell peppers, onions, olives, mushrooms, and tomatoes for a colorful, fresh bite.</p>
+      </div>
+      <div class="menu-item">
+        <h3>BBQ Chicken <span class="price">$16</span></h3>
+        <p>Tender grilled chicken, BBQ sauce, red onions, and mozzarella on a golden crust.</p>
+      </div>
+      <div class="menu-item">
+        <h3>Build Your Own <span class="price">From $11</span></h3>
+        <p>Choose your crust, sauce, cheese, and toppings to create your perfect pizza.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="instagram">
+    <div class="highlight">
+      <div>
+        <h2>Instagram That Makes People Hungry.</h2>
+        <p>
+          Mouth‑watering photos, daily specials, and behind‑the‑scenes moments—your pizzeria’s
+          Instagram can turn followers into regulars.
+        </p>
+        <p>
+          With <strong>Genius Workplace</strong>, we set up and grow your Instagram so your
+          pizza gets the attention it deserves.
+        </p>
+        <a href="#contact" class="btn btn-primary">Start My Instagram Growth</a>
+      </div>
+      <div class="highlight-box">
+        <strong>Instagram Growth Starter (Demo Offer):</strong><br /><br />
+        • Professional profile setup (bio, highlights, branding)<br />
+        • 8–12 posts in the first month (pizza shots, specials, stories)<br />
+        • Hashtag and caption strategy tailored to your city<br />
+        • Goal: at least 200 new local followers in the first month
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title">Order, Book, or Work With Us</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p><strong>Address:</strong> 123 Brick Oven Lane, Your City, ST</p>
+        <p><strong>Phone:</strong> (555) 123‑4567</p>
+        <p><strong>Hours:</strong> Mon–Sun, 11:00 AM – 10:00 PM</p>
+        <br />
+        <p>
+          For online orders and table bookings, call us or send a message using the form.
+          For website and Instagram growth, Genius Workplace will reach out within 24 hours.
+        </p>
+      </div>
+      <form class="contact-form">
+        <h3>Send Us a Message</h3>
+        <label for="name">Name</label>
+        <input id="name" type="text" placeholder="Your name" />
+
+        <label for="business">Business (Optional)</label>
+        <input id="business" type="text" placeholder="Bella's Brick Oven Pizza" />
+
+        <label for="phone">Phone</label>
+        <input id="phone" type="text" placeholder="(555) 123‑4567" />
+
+        <label for="message">How can we help?</label>
+        <textarea id="message" placeholder="Order, booking, or website/Instagram help..."></textarea>
+
+        <button type="submit" class="btn btn-primary" style="margin-top: 1rem; width: 100%;">
+          Submit
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    &copy; <span>Bella's Brick Oven Pizza</span> · Demo site by Genius Workplace
+  </footer>
+</body>
+</html>
